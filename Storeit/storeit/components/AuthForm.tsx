@@ -7,16 +7,17 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { createAccount } from "@/lib/actions/user.actions";
+import Image from "next/image";
+import { createAccount, signInUser } from "@/lib/actions/user.actions";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import Link from "next/link";
+import OTPModal from "./OTPModal";
 
 const authFormSchema = (formType: FormType) => {
   return z.object({
@@ -55,8 +56,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
               fullName: values.fullName || "",
               email: values.email,
             })
-          : "";
-      // : await signInUser({ email: values.email });
+          : await signInUser({ email: values.email });
 
       setAccountId(user.accountId);
     } catch {
@@ -154,6 +154,10 @@ const AuthForm = ({ type }: { type: FormType }) => {
           </div>
         </form>
       </Form>
+
+      {accountId && (
+        <OTPModal email={form.getValues("email")} accountId={accountId} />
+      )}
     </>
   );
 };
