@@ -157,7 +157,7 @@ export const updateFileUsers = async ({
       appwriteConfig.filesCollectionId,
       fileId,
       {
-        users: emails,
+        sharedusers: emails,
       }
     );
 

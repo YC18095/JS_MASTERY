@@ -15,7 +15,8 @@ export default function Layout({
               alt="logo"
               width={244}
               height={244}
-              className="h-auto"
+              className="h-auto w-auto"
+              priority
             />
           </div>
 
@@ -32,6 +33,7 @@ export default function Layout({
               width={342}
               height={342}
               className="transition-all hover:rotate-2 hover:scale-105"
+              priority
             />
           </div>
         </div>
@@ -45,6 +47,7 @@ export default function Layout({
             width={224}
             height={82}
             className="h-auto w-[200px] lg:w-[250px]"
+            priority
           />
         </div>
         {children}
