@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { getAllUsers } from "../controllers/user.controller.js";
+import { getAllUsers, getUser } from "../controllers/user.controller.js";
+import { authorize } from "../middleware/auth.middleware.js";
 
 const userRouter = Router();
 
 userRouter.get("/", getAllUsers);
+
+userRouter.get("/:id", authorize, getUser);
 
 userRouter.post("/", (req, res) => {
   res.send({ title: "Create A New User" });
@@ -15,10 +18,6 @@ userRouter.put("/:id", (req, res) => {
 
 userRouter.delete("/:id", (req, res) => {
   res.send({ title: "Delete User" });
-});
-
-userRouter.get("/:id", (req, res) => {
-  res.send({ title: "Get User Information" });
 });
 
 export { userRouter };
